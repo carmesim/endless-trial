@@ -44,7 +44,7 @@ jobs:
           name: 'endless-trial-linux-armv7-glibc'
           path: target/armv7-unknown-linux-gnueabihf/release/endless-trial
 
-  ubuntu:
+  ubuntu-glibc:
     name: Ubuntu 18.04 (glibc)
     runs-on: ubuntu-18.04
     strategy:
@@ -78,7 +78,7 @@ jobs:
 
 
           
-  ubuntu:
+  ubuntu-musl:
     name: Ubuntu 18.04 (musl)
     runs-on: ubuntu-18.04
     strategy:
