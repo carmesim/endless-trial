@@ -43,9 +43,43 @@ jobs:
         with:
           name: 'endless-trial-linux-armv7-glibc'
           path: target/armv7-unknown-linux-gnueabihf/release/endless-trial
+
+  ubuntu:
+    name: Ubuntu 18.04 (glibc)
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        rust:
+          - stable
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Run cargo build
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+
+      - name: Strip binary
+        run: strip target/release/endless-trial
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'endless-trial-linux-x86-64-musl'
+          path: target/release/endless-trial
+
+
           
   ubuntu:
-    name: Ubuntu 18.04
+    name: Ubuntu 18.04 (musl)
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -61,6 +95,9 @@ jobs:
           toolchain: stable
           target: x86_64-unknown-linux-musl
           override: true
+
+      - name: Mock musl-g++
+        run: sudo ln -s /bin/g++ /bin/musl-g++
 
       - name: Install dependencies for musl libc
         run: |
