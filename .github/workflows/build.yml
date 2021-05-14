@@ -96,10 +96,12 @@ jobs:
       - name: Mock musl-g++
         run: sudo ln -s /usr/bin/g++ /usr/bin/musl-g++
 
-      - name: Install dependencies for musl libc
+      - name: Install dependencies for musl libc and X11
         run: |
           sudo apt-get update
           sudo apt-get install musl-tools
+          sudo apt-get install libxext-dev
+          
       - name: Run cargo build
         uses: actions-rs/cargo@v1
         with:
