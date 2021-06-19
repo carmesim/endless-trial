@@ -101,8 +101,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install musl-tools
           sudo apt-get install libxext-dev libdirectfb-dev libegl1-mesa-dev mir-client-platform-mesa-dev libegl1-mesa-dev
-          sudo apt-get libwayland-dev wayland-protocols libx11-dev libxcursor-dev libxext-dev libxi-dev libxinerama-dev libxrandr-dev 
-          sudo apt-get libxrender-dev libxss-dev libxxf86vm-dev
+          sudo apt-get install libwayland-dev wayland-protocols libx11-dev libxcursor-dev libxext-dev libxi-dev libxinerama-dev libxrandr-dev 
+          sudo apt-get install libxrender-dev libxss-dev libxxf86vm-dev
           
       - name: Run cargo build
         uses: actions-rs/cargo@v1
